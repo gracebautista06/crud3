@@ -1,4 +1,5 @@
 <?php include 'database.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,18 +8,34 @@
     <style>
         body{
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #9face6);
+
+            /* IMAGE BACKGROUND */
+            background: url("images/bg.jpg") no-repeat center center fixed;
+            background-size: cover;
+
             margin: 0;
             padding: 0;
+        }
+
+        /* DARK OVERLAY */
+        body::before{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: -1;
         }
 
         .container{
             width: 60%;
             margin: 50px auto;
-            background: #fff;
+            background: rgba(255,255,255,0.95);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         h2{
@@ -85,7 +102,7 @@
             background: #f4f4ff;
         }
 
-        /* UPDATE INPUT */
+        /* EDIT INPUT */
         .edit-input{
             padding: 6px;
             border-radius: 6px;
@@ -109,7 +126,6 @@
             align-items: center;
             gap: 8px;
         }
-
     </style>
 </head>
 
@@ -165,7 +181,7 @@ while ($row = $result->fetch_assoc()) {
     <td><?php echo $row['task_name']; ?></td>
     <td class="actions">
 
-        <!-- EDIT FORM -->
+        <!-- UPDATE -->
         <form method="POST">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <input class="edit-input" type="text" name="task_name" value="<?php echo $row['task_name']; ?>">
